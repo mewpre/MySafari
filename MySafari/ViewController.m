@@ -15,7 +15,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIButton *forwardButton;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
-@property float yPositionIndex;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonBarConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *URLBarConstraint;
+
+@property CGFloat yPositionIndex;
+@property CGFloat originalButtonBarConstant;
+@property CGFloat originalURLBarConstant;
 
 @end
 
@@ -29,6 +34,8 @@
     self.webView.scrollView.scrollEnabled = YES;
     self.webView.scrollView.delegate = self;
     self.urlTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.originalButtonBarConstant = self.buttonBarConstraint.constant;
+    self.originalURLBarConstant = self.URLBarConstraint.constant;
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
@@ -87,26 +94,36 @@
 }
 
 #pragma mark - Scrolling Methods
-//-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-//{
-//    [self.urlTextField setHidden:YES];
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//{
-//    [self.urlTextField setHidden:NO];
-//}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.yPositionIndex >= scrollView.contentOffset.y)
+    //When scrolling down
+    if (self.yPositionIndex < scrollView.contentOffset.y)
     {
-        [self.urlTextField setHidden:NO];
+        //If
+        if (self.buttonBarConstraint.constant > -40)
+        {
+            self.buttonBarConstraint.constant = self.buttonBarConstraint.constant -8;
+        }
+         if (self.URLBarConstraint.constant > -33)
+        {
+            self.URLBarConstraint.constant = self.URLBarConstraint.constant -8;
+        }
     }
+    //When scrolling up
     else
     {
-        [self.urlTextField setHidden:YES];
+        //
+        if (self.buttonBarConstraint.constant < self.originalButtonBarConstant)
+        {
+            self.buttonBarConstraint.constant = self.buttonBarConstraint.constant +8;
+        }
+        if (self.URLBarConstraint.constant < self.originalURLBarConstant)
+        {
+            self.URLBarConstraint.constant = self.URLBarConstraint.constant +8;
+        }
     }
+    self.yPositionIndex = scrollView.contentOffset.y;
 
 }
 

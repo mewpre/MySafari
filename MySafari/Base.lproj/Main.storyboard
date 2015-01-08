@@ -107,7 +107,18 @@
                                     <constraint firstItem="yHL-9m-KXV" firstAttribute="leading" secondItem="XJo-MC-j6M" secondAttribute="trailing" constant="10" id="yS2-aZ-dov"/>
                                 </constraints>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCy-4b-LEy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter an URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1DS-iN-G8Y">
+                                <rect key="frame" x="16" y="65" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0wn-Lp-dLV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="6KF-C4-76O"/>
+                                </connections>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCy-4b-LEy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="1wN-tS-Ff1"/>
@@ -120,7 +131,7 @@
                                 </items>
                             </navigationBar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAJ-yc-8DO">
-                                <rect key="frame" x="0.0" y="60" width="320" height="458"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="418"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                                 <connections>
@@ -135,27 +146,14 @@
                                 </constraints>
                                 <color key="color" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter an URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1DS-iN-G8Y">
-                                <rect key="frame" x="16" y="65" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0wn-Lp-dLV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="6KF-C4-76O"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="RCy-4b-LEy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="1RL-cc-zmc"/>
+                            <constraint firstItem="IAJ-yc-8DO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="585-0C-yqS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IAJ-yc-8DO" secondAttribute="trailing" constant="-16" id="AFi-ay-RkU"/>
                             <constraint firstItem="1DS-iN-G8Y" firstAttribute="top" secondItem="RCy-4b-LEy" secondAttribute="bottom" constant="5" id="ECq-YA-LdH"/>
                             <constraint firstAttribute="centerY" secondItem="5y5-Va-CiI" secondAttribute="centerY" id="GF0-DJ-2sJ"/>
-                            <constraint firstItem="IAJ-yc-8DO" firstAttribute="top" secondItem="RCy-4b-LEy" secondAttribute="bottom" id="Ha8-MZ-rSq"/>
-                            <constraint firstItem="HTt-Xv-LcG" firstAttribute="top" secondItem="IAJ-yc-8DO" secondAttribute="bottom" id="NvY-fS-8aB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IAJ-yc-8DO" secondAttribute="trailing" constant="-16" id="TCC-ZW-wL1"/>
-                            <constraint firstItem="IAJ-yc-8DO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="TFv-AZ-rZJ"/>
                             <constraint firstItem="HTt-Xv-LcG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Tu1-yT-whS"/>
                             <constraint firstItem="RCy-4b-LEy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="Up2-fG-PhG"/>
                             <constraint firstItem="1DS-iN-G8Y" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Zfk-7C-4as"/>
@@ -164,10 +162,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="HTt-Xv-LcG" secondAttribute="trailing" constant="-16" id="mgH-1k-ffQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RCy-4b-LEy" secondAttribute="trailing" constant="-16" id="oQ1-cH-DdN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1DS-iN-G8Y" secondAttribute="trailing" id="qOg-Py-mPm"/>
+                            <constraint firstItem="HTt-Xv-LcG" firstAttribute="top" secondItem="IAJ-yc-8DO" secondAttribute="bottom" id="uBR-7v-fcI"/>
+                            <constraint firstItem="IAJ-yc-8DO" firstAttribute="top" secondItem="1DS-iN-G8Y" secondAttribute="bottom" constant="5" id="v2P-Hu-Al4"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="URLBarConstraint" destination="ECq-YA-LdH" id="cNQ-aV-NjW"/>
                         <outlet property="backButton" destination="ysO-fz-gYO" id="7J5-fJ-bw8"/>
+                        <outlet property="buttonBarConstraint" destination="dxw-JA-hbY" id="kh1-zk-m9i"/>
                         <outlet property="forwardButton" destination="Ds1-Wb-31D" id="eJr-0x-y00"/>
                         <outlet property="navigationBarTitle" destination="bsR-3g-HKH" id="2hb-cA-QTh"/>
                         <outlet property="spinner" destination="5y5-Va-CiI" id="8ou-UD-VtG"/>
