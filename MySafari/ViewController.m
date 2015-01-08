@@ -15,8 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIButton *forwardButton;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
-@property (strong, nonatomic) IBOutlet UIButton *clearURLButton;
-
+@property float yPositionIndex;
 
 @end
 
@@ -37,7 +36,7 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self.spinner startAnimating];
     self.spinner.hidden = false;
-    self.navigationBarTitle.title =[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//    self.navigationBarTitle.title =[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -88,16 +87,27 @@
 }
 
 #pragma mark - Scrolling Methods
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self.urlTextField setHidden:YES];
-    [self.clearURLButton setHidden:YES];
-}
+//-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+//{
+//    [self.urlTextField setHidden:YES];
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    [self.urlTextField setHidden:NO];
+//}
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.urlTextField setHidden:NO];
-    [self.clearURLButton setHidden:NO];
+    if (self.yPositionIndex >= scrollView.contentOffset.y)
+    {
+        [self.urlTextField setHidden:NO];
+    }
+    else
+    {
+        [self.urlTextField setHidden:YES];
+    }
+
 }
 
 #pragma mark - Button IBActions
